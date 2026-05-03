@@ -1,28 +1,40 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 
-/**
- * 
- * <div id = "parent">
- *  <div id = "child">
- *      <h1>I'm an h1 tag</h1>
- *      <h2>I'm an h2 tag</h2> // want to give multiple children tag, put array instead of object
- *  </div>
- * </div>
- */
+const JsxHeading = () => <h1 id="heading">Namaste React using JSX</h1>
 
+// className => class in html
+// React component
+const HeadingComponent = () => (
+    <div>
+        <JsxHeading/> 
+        <h1 className="head">
+        Namaste React using React component</h1>
+        {200 + 500}
+        {JsxHeading()}
+        <JsxHeading></JsxHeading>
+        <JsxHeading/>
+    </div>
+    );
+// component composition : component inside component is called as component composition
 
-const heading = React.createElement("h1", {id: "heading"}, "Hello World from React!");
 const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(heading);
-console.log(heading);
 
-const h1Tag = React.createElement("h1", {}, "I'm an h1 tag");
-const h2Tag = React.createElement("h2", {}, "I am an h2 tag");
+/**
+ * react component will not get rendered directly
+ * we need to add react component inside < /> to get react component get rendered
+ * we can see it below
+ * also, we can render another react component inside another react component
+ * that we also called component composition
+ * 
+ * we have executed JS code inside curly braces {}
+ * 
+ * {JsxHeading()}
+    <JsxHeading></JsxHeading>
+    <JsxHeading/>
 
-const child = React.createElement("div", {id: "child"}, [h1Tag, h2Tag])
-const parent = React.createElement("div", {id: "parent"}, child);
-
-console.log(parent);
-root.render(parent);
-
+    above all three will perform same thing, 
+    </> or <></> will render JSX code
+    {JsxHeading} = also work as React component is also a JS at the end of the day
+ */
+root.render(<HeadingComponent />);
